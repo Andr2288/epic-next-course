@@ -42,6 +42,7 @@ export function HeroSection({
         alt={image?.alternativeText ?? "no alternative text"}
         className="absolute inset-0 h-full w-full object-cover"
         height={1080}
+        priority
         src={image?.url ?? FALLBACK_IMAGE}
         width={1920}
       />
