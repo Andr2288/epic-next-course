@@ -1,4 +1,4 @@
-import { flattenError, z } from "zod";
+import { z } from "zod";
 
 export const SigninFormSchema = z.object({
   identifier: z

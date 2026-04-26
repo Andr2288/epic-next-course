@@ -1,7 +1,8 @@
 import Link from "next/link"
-import type { TImage, TLink } from "@/types"
 
 import { StrapiImage } from "@/components/custom/strapi-image"
+import { services } from "@/data/services"
+import type { TImage, TLink } from "@/types"
 
 export interface IHeroSectionProps {
   id: number
@@ -10,7 +11,7 @@ export interface IHeroSectionProps {
   heading: string
   subHeading: string
   image: TImage | null
-  link: TLink
+  link?: TLink | null
 }
 
 const styles = {
@@ -26,15 +27,20 @@ const styles = {
 const FALLBACK_IMAGE =
   "https://images.pexels.com/photos/7552374/pexels-photo-7552374.jpeg"
 
-export function HeroSection({
+export async function HeroSection({
   data,
 }: {
   readonly data: IHeroSectionProps | undefined
 }) {
-  if (!data?.link) return null
+  if (!data) return null
+
+  const user = await services.auth.getUserMeService()
+  const userLoggedIn = Boolean(user.success && user.data)
+
+  if (!userLoggedIn && !data.link) return null
 
   const { heading, subHeading, link, image } = data
-  const isExternal = Boolean(link.isExternal)
+  const isExternal = Boolean(link?.isExternal)
 
   return (
     <header className={styles.header}>
@@ -49,7 +55,11 @@ export function HeroSection({
       <div className={styles.overlay}>
         <h1 className={styles.heading}>{heading}</h1>
         <p className={styles.subheading}>{subHeading}</p>
-        {isExternal ? (
+        {userLoggedIn ? (
+          <Link className={styles.button} href="/dashboard">
+            Dashboard
+          </Link>
+        ) : link && isExternal ? (
           <a
             className={styles.button}
             href={link.href}
@@ -58,11 +68,11 @@ export function HeroSection({
           >
             {link.label}
           </a>
-        ) : (
+        ) : link ? (
           <Link className={styles.button} href={link.href}>
             {link.label}
           </Link>
-        )}
+        ) : null}
       </div>
     </header>
   )

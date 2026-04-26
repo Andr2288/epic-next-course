@@ -20,6 +20,15 @@ export function getStrapiMedia(url: string | null) {
   return `${strapiURL}${url}`
 }
 
+function isLocalStrapiUrl(url: string): boolean {
+  try {
+    const u = new URL(url)
+    return u.hostname === "localhost" || u.hostname === "127.0.0.1"
+  } catch {
+    return false
+  }
+}
+
 export function StrapiImage({
   src,
   alt,
@@ -28,12 +37,15 @@ export function StrapiImage({
 }: Readonly<IStrapiMediaProps>) {
   const imageUrl = getStrapiMedia(src)
   if (!imageUrl) return null
+  const unoptimized =
+    imageUrl.startsWith("data:") || isLocalStrapiUrl(imageUrl)
   return (
     <Image
-      src={imageUrl}
+      {...rest}
       alt={alt ?? "No alternative text provided"}
       className={className}
-      {...rest}
+      src={imageUrl}
+      unoptimized={unoptimized}
     />
   )
 }

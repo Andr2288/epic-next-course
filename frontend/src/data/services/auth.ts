@@ -1,7 +1,29 @@
 import { cookies } from "next/headers";
+import qs from "qs";
 
 import { getStrapiURL } from "@/lib/utils";
-import type { TAuthUser, TStrapiResponse } from "@/types";
+import type { TAuthUser, TImage, TStrapiResponse } from "@/types";
+
+function normalizeUserImage(image: unknown): TImage | null {
+  if (image == null || typeof image !== "object") return null;
+  const root = image as Record<string, unknown>;
+  const inner =
+    root.data != null && typeof root.data === "object"
+      ? (root.data as Record<string, unknown>)
+      : root;
+  const id = inner.id;
+  const url = inner.url;
+  if (typeof id !== "number" || typeof url !== "string") return null;
+  const documentId =
+    typeof inner.documentId === "string" ? inner.documentId : String(id);
+  const alt = inner.alternativeText;
+  return {
+    id,
+    documentId,
+    url,
+    alternativeText: typeof alt === "string" ? alt : null,
+  };
+}
 
 export type TRegisterUser = {
   username: string;
@@ -92,6 +114,16 @@ export async function getUserMeService(): Promise<TStrapiResponse<TAuthUser>> {
   }
 
   const url = new URL("/api/users/me", baseUrl);
+  url.search = qs.stringify(
+    {
+      populate: {
+        image: {
+          fields: ["url", "alternativeText"],
+        },
+      },
+    },
+    { encodeValuesOnly: true }
+  );
 
   try {
     const response = await fetch(url.href, {
@@ -141,9 +173,14 @@ export async function getUserMeService(): Promise<TStrapiResponse<TAuthUser>> {
       };
     }
 
+    const withImage: TAuthUser = {
+      ...user,
+      image: normalizeUserImage((user as Record<string, unknown>).image),
+    };
+
     return {
       success: true,
-      data: user,
+      data: withImage,
       error: undefined,
       status: response.status,
     };

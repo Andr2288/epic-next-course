@@ -4,31 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b686b55-0fe7-4c7f-8e62-d50d9ae2c533" name="Changes" comment="Part 2: hero зі Strapi — dynamic zone, populate через qs і компонент HeroSection&#10;&#10;Додано компоненти Strapi Link і Hero Section, поле blocks у Home Page.&#10;Фронт: qs-запит populate для layout.hero-section (image, link), типи в src/types, custom HeroSection, головна лише з hero.&#10;Оновлено залежності (qs, @types/qs) і згенеровані типи backend.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/(auth)/layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/(auth)/signin/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/(auth)/signup/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/(protected)/dashboard/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/login/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/custom/logout-button.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/custom/strapi-errors.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/custom/submit-button.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/custom/zod-errors.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/forms/signin-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/forms/signup-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ui/card.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ui/input.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ui/label.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/data/actions/auth.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/data/actions/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/data/services/auth.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/data/services/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/data/validation/auth.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/middleware.ts" afterDir="false" />
+    <list default="true" id="7b686b55-0fe7-4c7f-8e62-d50d9ae2c533" name="Changes" comment="Part 4: Strapi auth — signin/signup, JWT cookie, middleware, dashboard&#10;&#10;Маршрути (auth): layout, /signin, /signup; редірект /login → /signin; /dashboard у (protected).&#10;Форми з useActionState, Zod + flattenError, server actions (register/login/logout), сервіси Strapi auth, httpOnly jwt.&#10;middleware для /dashboard/*; shadcn card/label/input; ZodErrors, StrapiErrors, SubmitButton, LogoutButton.&#10;Hero: priority для StrapiImage (LCP). Залежність zod у package.json.">
+      <change afterPath="$PROJECT_DIR$/backend/src/extensions/users-permissions/content-types/user/schema.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/(protected)/dashboard/account/loading.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/(protected)/dashboard/account/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/(protected)/dashboard/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/(protected)/dashboard/summaries/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/custom/image-picker.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/custom/logged-in-user.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/forms/profile-form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/forms/profile-image-form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/ui/skeleton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/ui/textarea.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/data/actions/profile.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/data/services/file.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/data/services/profile.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/data/validation/profile.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/types/generated/contentTypes.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/types/generated/contentTypes.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/(protected)/dashboard/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/(protected)/dashboard/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/custom/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/custom/header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/custom/hero-section.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/custom/hero-section.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/custom/strapi-image.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/custom/strapi-image.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/data/actions/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/data/actions/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/data/services/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/data/services/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/data/services/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/data/services/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/data/validation/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/data/validation/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/types/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +102,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1777224693577</updated>
-      <workItem from="1777224695188" duration="5094000" />
+      <workItem from="1777224695188" duration="6511000" />
     </task>
     <task id="LOCAL-00001" summary="Part 2: hero зі Strapi — dynamic zone, populate через qs і компонент HeroSection&#10;&#10;Додано компоненти Strapi Link і Hero Section, поле blocks у Home Page.&#10;Фронт: qs-запит populate для layout.hero-section (image, link), типи в src/types, custom HeroSection, головна лише з hero.&#10;Оновлено залежності (qs, @types/qs) і згенеровані типи backend.">
       <option name="closed" value="true" />
@@ -109,7 +112,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777225979055</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Part 4: Strapi auth — signin/signup, JWT cookie, middleware, dashboard&#10;&#10;Маршрути (auth): layout, /signin, /signup; редірект /login → /signin; /dashboard у (protected).&#10;Форми з useActionState, Zod + flattenError, server actions (register/login/logout), сервіси Strapi auth, httpOnly jwt.&#10;middleware для /dashboard/*; shadcn card/label/input; ZodErrors, StrapiErrors, SubmitButton, LogoutButton.&#10;Hero: priority для StrapiImage (LCP). Залежність zod у package.json.">
+      <option name="closed" value="true" />
+      <created>1777230097248</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1777230097248</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,7 +139,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Part 2: hero зі Strapi — dynamic zone, populate через qs і компонент HeroSection&#10;&#10;Додано компоненти Strapi Link і Hero Section, поле blocks у Home Page.&#10;Фронт: qs-запит populate для layout.hero-section (image, link), типи в src/types, custom HeroSection, головна лише з hero.&#10;Оновлено залежності (qs, @types/qs) і згенеровані типи backend." />
-    <option name="LAST_COMMIT_MESSAGE" value="Part 2: hero зі Strapi — dynamic zone, populate через qs і компонент HeroSection&#10;&#10;Додано компоненти Strapi Link і Hero Section, поле blocks у Home Page.&#10;Фронт: qs-запит populate для layout.hero-section (image, link), типи в src/types, custom HeroSection, головна лише з hero.&#10;Оновлено залежності (qs, @types/qs) і згенеровані типи backend." />
+    <MESSAGE value="Part 4: Strapi auth — signin/signup, JWT cookie, middleware, dashboard&#10;&#10;Маршрути (auth): layout, /signin, /signup; редірект /login → /signin; /dashboard у (protected).&#10;Форми з useActionState, Zod + flattenError, server actions (register/login/logout), сервіси Strapi auth, httpOnly jwt.&#10;middleware для /dashboard/*; shadcn card/label/input; ZodErrors, StrapiErrors, SubmitButton, LogoutButton.&#10;Hero: priority для StrapiImage (LCP). Залежність zod у package.json." />
+    <option name="LAST_COMMIT_MESSAGE" value="Part 4: Strapi auth — signin/signup, JWT cookie, middleware, dashboard&#10;&#10;Маршрути (auth): layout, /signin, /signup; редірект /login → /signin; /dashboard у (protected).&#10;Форми з useActionState, Zod + flattenError, server actions (register/login/logout), сервіси Strapi auth, httpOnly jwt.&#10;middleware для /dashboard/*; shadcn card/label/input; ZodErrors, StrapiErrors, SubmitButton, LogoutButton.&#10;Hero: priority для StrapiImage (LCP). Залежність zod у package.json." />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
