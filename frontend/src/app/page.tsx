@@ -1,56 +1,46 @@
-import qs from "qs";
-import { HeroSection, type IHeroSectionProps } from "@/components/custom/hero-section";
+import { FeaturesSection, type IFeaturesSectionProps } from "@/components/custom/features-section"
+import {
+  HeroSection,
+  type IHeroSectionProps,
+} from "@/components/custom/hero-section"
+import { loaders } from "@/data/loaders"
+import { validateApiResponse } from "@/lib/error-handler"
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic"
 
-const homePageQuery = qs.stringify({
-  populate: {
-    blocks: {
-      on: {
-        "layout.hero-section": {
-          populate: {
-            image: {
-              fields: ["url", "alternativeText"],
-            },
-            link: {
-              populate: true,
-            },
-          },
-        },
-      },
-    },
-  },
-});
+export type TBlocks = IHeroSectionProps | IFeaturesSectionProps
 
-async function getStrapiData(path: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337";
-  const url = new URL(path, baseUrl);
-  url.search = homePageQuery;
-
-  try {
-    const response = await fetch(url.href, { cache: "no-store" });
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
+function blockRenderer(block: TBlocks, index: number) {
+  switch (block.__component) {
+    case "layout.hero-section":
+      return (
+        <HeroSection
+          key={block.id ?? index}
+          data={block as IHeroSectionProps}
+        />
+      )
+    case "layout.features-section":
+      return (
+        <FeaturesSection
+          key={block.id ?? index}
+          data={block as IFeaturesSectionProps}
+        />
+      )
+    default:
+      return null
   }
 }
 
 export default async function Home() {
-  const strapiData = await getStrapiData("/api/home-page");
-  const raw = strapiData?.data;
-  const page = raw?.attributes ?? raw;
-  const blocks = page?.blocks as
-    | Array<{ __component?: string } & Record<string, unknown>>
-    | undefined;
-
-  const heroData = blocks?.find((b) => b.__component === "layout.hero-section") as
-    | IHeroSectionProps
-    | undefined;
+  const homePageData = await loaders.getHomePageData()
+  const data = validateApiResponse(homePageData, "home page")
+  const { blocks } = data
 
   return (
     <main>
-      <HeroSection data={heroData} />
+      {blocks.map((block, index) =>
+        blockRenderer(block as unknown as TBlocks, index)
+      )}
     </main>
-  );
+  )
 }

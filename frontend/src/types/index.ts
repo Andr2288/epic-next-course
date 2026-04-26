@@ -30,6 +30,12 @@ export type TFeature = {
   icon: string;
 };
 
+export type THomePageBlock = {
+  id: number;
+  __component: string;
+  [key: string]: unknown;
+};
+
 export type THomePage = {
   documentId: string;
   title: string;
@@ -37,7 +43,7 @@ export type THomePage = {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  blocks: unknown;
+  blocks: THomePageBlock[];
 };
 
 export type THeader = {
