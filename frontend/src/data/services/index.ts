@@ -8,6 +8,11 @@ import {
   updateProfileImageService,
   updateProfileService,
 } from "@/data/services/profile";
+import {
+  generateSummary,
+  generateTranscript,
+  saveSummaryService,
+} from "@/data/services/summary";
 
 export const services = {
   auth: {
@@ -22,5 +27,10 @@ export const services = {
   file: {
     fileUploadService,
     fileDeleteService,
+  },
+  summarize: {
+    generateTranscript,
+    generateSummary,
+    saveSummaryService,
   },
 };

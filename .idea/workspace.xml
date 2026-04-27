@@ -4,34 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b686b55-0fe7-4c7f-8e62-d50d9ae2c533" name="Changes" comment="Part 4: Strapi auth — signin/signup, JWT cookie, middleware, dashboard&#10;&#10;Маршрути (auth): layout, /signin, /signup; редірект /login → /signin; /dashboard у (protected).&#10;Форми з useActionState, Zod + flattenError, server actions (register/login/logout), сервіси Strapi auth, httpOnly jwt.&#10;middleware для /dashboard/*; shadcn card/label/input; ZodErrors, StrapiErrors, SubmitButton, LogoutButton.&#10;Hero: priority для StrapiImage (LCP). Залежність zod у package.json.">
-      <change afterPath="$PROJECT_DIR$/backend/src/extensions/users-permissions/content-types/user/schema.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/(protected)/dashboard/account/loading.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/(protected)/dashboard/account/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/(protected)/dashboard/layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/(protected)/dashboard/summaries/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/custom/image-picker.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/custom/logged-in-user.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/forms/profile-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/forms/profile-image-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ui/skeleton.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ui/textarea.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/data/actions/profile.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/data/services/file.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/data/services/profile.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/data/validation/profile.ts" afterDir="false" />
+    <list default="true" id="7b686b55-0fe7-4c7f-8e62-d50d9ae2c533" name="Changes" comment="Part 5: dashboard layout, account, profile + avatar upload (server actions)&#10;&#10;Dashboard layout + summaries placeholder; account page з ProfileForm / ProfileImageForm.&#10;Server actions + Zod (profile, profile image); services profile/file без циклічних імпортів; populate image у getUserMeService.&#10;Header async + LoggedInUser; Hero async — Dashboard для залогіненого. next.config: serverActions bodySizeLimit 5mb; shadcn textarea + skeleton.">
+      <change afterPath="$PROJECT_DIR$/PART-6-CHECKLIST.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/api/summary/content-types/summary/schema.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/api/summary/controllers/summary.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/api/summary/middlewares/on-summary-create.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/api/summary/routes/summary.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/api/summary/services/summary.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/(protected)/dashboard/summaries/[documentId]/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/api/summarize/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/api/transcript/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/custom/summaries-grid.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/custom/youtube-player.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/forms/summary-form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/ui/sonner.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/data/actions/summary.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/data/services/summary/generate-summary.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/data/services/summary/generate-transcript.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/data/services/summary/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/data/services/summary/save-summary.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/data/services/summary/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/types/generated/contentTypes.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/types/generated/contentTypes.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/next.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/(protected)/dashboard/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/(protected)/dashboard/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/(protected)/dashboard/summaries/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/(protected)/dashboard/summaries/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/custom/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/custom/header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/custom/hero-section.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/custom/hero-section.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/custom/image-picker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/custom/image-picker.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/custom/strapi-image.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/custom/strapi-image.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/data/actions/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/data/actions/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/data/services/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/data/services/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/data/data-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/data/data-api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/data/loaders.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/data/loaders.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/data/services/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/data/services/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/data/validation/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/data/validation/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/lib/utils.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,22 +52,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Andr2288"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Andr2288&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Andr2288/epic-next-course.git",
-    "accountId": "07b6bf32-db84-464a-bf79-551340a8d843"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Andr2288/epic-next-course.git&quot;,
+    &quot;accountId&quot;: &quot;07b6bf32-db84-464a-bf79-551340a8d843&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="3Cu9f9DkMWkhrjCyiAL0KFeAjDA" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -72,6 +78,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "master",
@@ -102,7 +109,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1777224693577</updated>
-      <workItem from="1777224695188" duration="6511000" />
+      <workItem from="1777224695188" duration="6538000" />
+      <workItem from="1777269155096" duration="2580000" />
     </task>
     <task id="LOCAL-00001" summary="Part 2: hero зі Strapi — dynamic zone, populate через qs і компонент HeroSection&#10;&#10;Додано компоненти Strapi Link і Hero Section, поле blocks у Home Page.&#10;Фронт: qs-запит populate для layout.hero-section (image, link), типи в src/types, custom HeroSection, головна лише з hero.&#10;Оновлено залежності (qs, @types/qs) і згенеровані типи backend.">
       <option name="closed" value="true" />
@@ -120,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777230097248</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Part 5: dashboard layout, account, profile + avatar upload (server actions)&#10;&#10;Dashboard layout + summaries placeholder; account page з ProfileForm / ProfileImageForm.&#10;Server actions + Zod (profile, profile image); services profile/file без циклічних імпортів; populate image у getUserMeService.&#10;Header async + LoggedInUser; Hero async — Dashboard для залогіненого. next.config: serverActions bodySizeLimit 5mb; shadcn textarea + skeleton.">
+      <option name="closed" value="true" />
+      <created>1777231516632</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1777231516632</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,7 +156,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Part 2: hero зі Strapi — dynamic zone, populate через qs і компонент HeroSection&#10;&#10;Додано компоненти Strapi Link і Hero Section, поле blocks у Home Page.&#10;Фронт: qs-запит populate для layout.hero-section (image, link), типи в src/types, custom HeroSection, головна лише з hero.&#10;Оновлено залежності (qs, @types/qs) і згенеровані типи backend." />
     <MESSAGE value="Part 4: Strapi auth — signin/signup, JWT cookie, middleware, dashboard&#10;&#10;Маршрути (auth): layout, /signin, /signup; редірект /login → /signin; /dashboard у (protected).&#10;Форми з useActionState, Zod + flattenError, server actions (register/login/logout), сервіси Strapi auth, httpOnly jwt.&#10;middleware для /dashboard/*; shadcn card/label/input; ZodErrors, StrapiErrors, SubmitButton, LogoutButton.&#10;Hero: priority для StrapiImage (LCP). Залежність zod у package.json." />
-    <option name="LAST_COMMIT_MESSAGE" value="Part 4: Strapi auth — signin/signup, JWT cookie, middleware, dashboard&#10;&#10;Маршрути (auth): layout, /signin, /signup; редірект /login → /signin; /dashboard у (protected).&#10;Форми з useActionState, Zod + flattenError, server actions (register/login/logout), сервіси Strapi auth, httpOnly jwt.&#10;middleware для /dashboard/*; shadcn card/label/input; ZodErrors, StrapiErrors, SubmitButton, LogoutButton.&#10;Hero: priority для StrapiImage (LCP). Залежність zod у package.json." />
+    <MESSAGE value="Part 5: dashboard layout, account, profile + avatar upload (server actions)&#10;&#10;Dashboard layout + summaries placeholder; account page з ProfileForm / ProfileImageForm.&#10;Server actions + Zod (profile, profile image); services profile/file без циклічних імпортів; populate image у getUserMeService.&#10;Header async + LoggedInUser; Hero async — Dashboard для залогіненого. next.config: serverActions bodySizeLimit 5mb; shadcn textarea + skeleton." />
+    <option name="LAST_COMMIT_MESSAGE" value="Part 5: dashboard layout, account, profile + avatar upload (server actions)&#10;&#10;Dashboard layout + summaries placeholder; account page з ProfileForm / ProfileImageForm.&#10;Server actions + Zod (profile, profile image); services profile/file без циклічних імпортів; populate image у getUserMeService.&#10;Header async + LoggedInUser; Hero async — Dashboard для залогіненого. next.config: serverActions bodySizeLimit 5mb; shadcn textarea + skeleton." />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

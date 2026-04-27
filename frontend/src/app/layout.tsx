@@ -5,6 +5,7 @@ import "./globals.css"
 
 import { Footer } from "@/components/custom/footer"
 import { Header } from "@/components/custom/header"
+import { Toaster } from "@/components/ui/sonner"
 import { loaders } from "@/data/loaders"
 import { validateApiResponse } from "@/lib/error-handler"
 
@@ -45,6 +46,7 @@ export default async function RootLayout({
       lang="en"
     >
       <body className="flex min-h-full flex-col">
+        <Toaster position="bottom-center" />
         <Header data={globalData.header} />
         <div className="flex flex-1 flex-col">{children}</div>
         <Footer data={globalData.footer} />

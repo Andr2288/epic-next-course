@@ -1,7 +1,15 @@
 import qs from "qs"
-import type { TStrapiResponse, THomePage, TGlobal, TMetaData } from "@/types"
+import type {
+  TStrapiResponse,
+  THomePage,
+  TGlobal,
+  TMetaData,
+  TSummary,
+} from "@/types"
 
+import { actions } from "@/data/actions"
 import { api } from "@/data/data-api"
+import { services } from "@/data/services"
 import { getStrapiURL } from "@/lib/utils"
 
 const baseUrl = getStrapiURL()
@@ -63,8 +71,70 @@ async function getMetaData(): Promise<TStrapiResponse<TMetaData>> {
   return api.get<TMetaData>(url.href, { timeoutMs: 8000 })
 }
 
+async function getSummaries(): Promise<TStrapiResponse<TSummary[]>> {
+  const me = await services.auth.getUserMeService()
+  if (!me.success || !me.data) {
+    return {
+      success: false,
+      status: 401,
+      error: { status: 401, name: "Unauthorized", message: "Not authorized" },
+    }
+  }
+  const authToken = await actions.auth.getAuthTokenAction()
+  if (!authToken) {
+    return {
+      success: false,
+      status: 401,
+      error: { status: 401, name: "Unauthorized", message: "Not authorized" },
+    }
+  }
+  const query = qs.stringify(
+    {
+      filters: { userId: { $eq: me.data.documentId } },
+      sort: ["createdAt:desc"],
+    },
+    { encodeValuesOnly: true }
+  )
+  const url = new URL("/api/summaries", baseUrl)
+  url.search = query
+  return api.get<TSummary[]>(url.href, { authToken, timeoutMs: 15_000 })
+}
+
+async function getSummaryByDocumentId(
+  documentId: string
+): Promise<TStrapiResponse<TSummary>> {
+  const me = await services.auth.getUserMeService()
+  if (!me.success || !me.data) {
+    return {
+      success: false,
+      status: 401,
+      error: { status: 401, name: "Unauthorized", message: "Not authorized" },
+    }
+  }
+  const authToken = await actions.auth.getAuthTokenAction()
+  if (!authToken) {
+    return {
+      success: false,
+      status: 401,
+      error: { status: 401, name: "Unauthorized", message: "Not authorized" },
+    }
+  }
+  const url = new URL(`/api/summaries/${documentId}`, baseUrl)
+  const res = await api.get<TSummary>(url.href, { authToken, timeoutMs: 15_000 })
+  if (res.success && res.data && res.data.userId !== me.data.documentId) {
+    return {
+      success: false,
+      status: 404,
+      error: { status: 404, name: "NotFound", message: "Not found" },
+    }
+  }
+  return res
+}
+
 export const loaders = {
   getHomePageData,
   getGlobalData,
   getMetaData,
+  getSummaries,
+  getSummaryByDocumentId,
 }

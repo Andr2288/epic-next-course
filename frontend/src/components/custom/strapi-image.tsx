@@ -10,6 +10,8 @@ interface IStrapiMediaProps {
   className?: string
   fill?: boolean
   priority?: boolean
+  /** LCP: use `eager` with `priority` for above-the-fold avatars. */
+  loading?: "eager" | "lazy"
 }
 
 export function getStrapiMedia(url: string | null) {
@@ -33,6 +35,8 @@ export function StrapiImage({
   src,
   alt,
   className,
+  loading,
+  priority,
   ...rest
 }: Readonly<IStrapiMediaProps>) {
   const imageUrl = getStrapiMedia(src)
@@ -44,6 +48,9 @@ export function StrapiImage({
       {...rest}
       alt={alt ?? "No alternative text provided"}
       className={className}
+      fetchPriority={priority ? "high" : undefined}
+      loading={loading}
+      priority={priority}
       src={imageUrl}
       unoptimized={unoptimized}
     />

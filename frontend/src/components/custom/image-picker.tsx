@@ -21,11 +21,14 @@ function generateDataUrl(file: File, callback: (imageUrl: string) => void) {
 }
 
 function ImagePreview({ dataUrl }: { readonly dataUrl: string }) {
+  const isRemoteLcp = dataUrl.startsWith("http://") || dataUrl.startsWith("https://");
   return (
     <StrapiImage
       alt="preview"
       className="h-full w-full rounded-lg object-cover"
       height={200}
+      loading={isRemoteLcp ? "eager" : "lazy"}
+      priority={isRemoteLcp}
       src={dataUrl}
       width={200}
     />

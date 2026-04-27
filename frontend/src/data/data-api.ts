@@ -70,12 +70,43 @@ export async function apiRequest<T = unknown, P = Record<string, unknown>>(
           }
     }
 
-    const data = await response.json()
+    const raw = await response.text()
+    const trimmed = raw?.trim() ?? ""
+    let data: Record<string, unknown> | null = null
+
+    if (trimmed) {
+      try {
+        data = JSON.parse(trimmed) as Record<string, unknown>
+      } catch {
+        return {
+          error: {
+            status: response.status,
+            name: "ParseError",
+            message: "Invalid JSON in response (empty or not JSON).",
+          },
+          success: false,
+          status: response.status,
+        } as TStrapiResponse<T>
+      }
+    } else if (!response.ok) {
+      return {
+        error: {
+          status: response.status,
+          name: "Error",
+          message: response.statusText || "Request failed (empty body)",
+        },
+        success: false,
+        status: response.status,
+      } as TStrapiResponse<T>
+    } else {
+      data = {}
+    }
 
     if (!response.ok) {
-      if (data.error) {
+      const err = data.error
+      if (err && typeof err === "object" && "message" in err) {
         return {
-          error: data.error,
+          error: err as NonNullable<TStrapiResponse<null>["error"]>,
           success: false,
           status: response.status,
         }
@@ -83,11 +114,14 @@ export async function apiRequest<T = unknown, P = Record<string, unknown>>(
       return {
         error: {
           status: response.status,
-          name: data?.error?.name ?? "Error",
+          name:
+            err && typeof err === "object" && "name" in err
+              ? String((err as { name?: string }).name)
+              : "Error",
           message:
-            data?.error?.message ??
-            response.statusText ??
-            "An error occurred",
+            err && typeof err === "object" && "message" in err
+              ? String((err as { message?: string }).message)
+              : response.statusText || "An error occurred",
         },
         success: false,
         status: response.status,
@@ -95,7 +129,14 @@ export async function apiRequest<T = unknown, P = Record<string, unknown>>(
     }
 
     const responseData = data.data ? data.data : data
-    const responseMeta = data.meta ? data.meta : undefined
+    const rawMeta = data.meta
+    const responseMeta =
+      rawMeta &&
+      typeof rawMeta === "object" &&
+      rawMeta !== null &&
+      "pagination" in rawMeta
+        ? (rawMeta as TStrapiResponse<T>["meta"])
+        : undefined
     return {
       data: responseData as T,
       meta: responseMeta,

@@ -8,6 +8,9 @@ import {
   updateProfileAction,
   updateProfileImageAction,
 } from "@/data/actions/profile";
+import { createSummaryAction } from "@/data/actions/summary";
+
+export { createSummaryAction } from "@/data/actions/summary";
 
 export const actions = {
   auth: {
@@ -19,5 +22,8 @@ export const actions = {
   profile: {
     updateProfileAction,
     updateProfileImageAction,
+  },
+  summary: {
+    createSummaryAction,
   },
 };

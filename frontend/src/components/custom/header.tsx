@@ -3,13 +3,16 @@ import type { THeader } from "@/types"
 
 import { LoggedInUser } from "@/components/custom/logged-in-user"
 import { Logo } from "@/components/custom/logo"
+import { SummaryForm } from "@/components/forms/summary-form"
 import { Button } from "@/components/ui/button"
 import { services } from "@/data/services"
 
 const styles = {
   header:
-    "flex items-center justify-between bg-white px-4 py-3 shadow-md dark:bg-gray-800",
-  actions: "flex items-center gap-4",
+    "flex items-center justify-between gap-2 bg-white px-4 py-3 shadow-md dark:bg-gray-800",
+  left: "flex min-w-0 items-center gap-2 md:gap-4",
+  center: "mx-2 min-w-0 flex-1 justify-end md:justify-center",
+  actions: "flex shrink-0 items-center gap-2 md:gap-4",
 }
 
 interface IHeaderProps {
@@ -23,7 +26,14 @@ export async function Header({ data }: IHeaderProps) {
   const { logoText, ctaButton } = data
   return (
     <div className={styles.header}>
-      <Logo href={logoText.href} text={logoText.label} />
+      <div className={styles.left}>
+        <Logo href={logoText.href} text={logoText.label} />
+      </div>
+      {user.success && user.data ? (
+        <div className={styles.center}>
+          <SummaryForm />
+        </div>
+      ) : null}
       <div className={styles.actions}>
         {user.success && user.data ? (
           <LoggedInUser
